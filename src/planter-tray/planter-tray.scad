@@ -1,79 +1,53 @@
 include<../modules/heart.scad>
+include<../modules/scallopCirclet.scad>
 
 epsilon = 0.001;
 
 innerDiameter = 120;
-innerHeight = 18;
+solidInnerWallHeight = 10;
 wallWidth = 2;
 floorHeight = 5;
-scallopRadius = 7;
+//scallopRadius = 7;
 
 diameter = innerDiameter + (wallWidth * 2);
-height = innerHeight + floorHeight;
-
-scallopRotationStep = 180 / (scallopRadius * 2);
+height = solidInnerWallHeight + floorHeight;
 
 radius = diameter / 2;
 innerRadius = innerDiameter / 2;
+
+scallopRadius = (radius * PI) / 27.85;
+scallopRotationStep = 180 / (scallopRadius * 2);
 
 union() {
     difference() {
         difference() {
             union() {
                 difference() {
-                    union() {
-                        cylinder(height, radius, radius);
-                        translate([
-                            0,
-                            0,
-                            floorHeight + epsilon
-                        ])
-                        rotate([0, 0, scallopRotationStep])
-                        union() {
-                            for(i = [0:2:floor(180 / scallopRotationStep) - 1]) {
-                                rotate([0, 0, scallopRotationStep * i])
-                                translate([0, innerRadius * 1.5, height - (scallopRadius)])
-                                rotate([90, 0, 0 ])
-                                cylinder(
-                                    innerRadius * 3,
-                                    scallopRadius,
-                                    scallopRadius
-                                );
-                            }
-                        }
-                    }
+                    cylinder(height, radius, radius, $fn = 512);
+
                     translate([0,0,floorHeight])
                     cylinder(
-                        innerHeight * 4,
+                        solidInnerWallHeight * 4,
                         innerRadius,
-                        innerRadius
+                        innerRadius + 0.5,
+                        $fn = 128
                     );
-                    translate([innerDiameter / 4 + 5, -3, 0])
-                    rotate([0, 180, 0])
-                    linear_extrude(height = 1)
-                    text("mellypop :3");
-                }
-                
-            }
 
-            union() {
-                for(i = [0:2:floor(180 / scallopRotationStep) - 1]) {
-                    rotate([0, 0, scallopRotationStep * i])
-                    translate([0, innerRadius * 1.5, height + (scallopRadius / 4)])
-                    rotate([90, 0, 0 ])
-                    cylinder(
-                        innerRadius * 3,
-                        scallopRadius,
-                        scallopRadius
-                    );
+                    linear_extrude(height = floorHeight / 4)
+                    translate([innerDiameter / 4 + 5, -3, -2])
+                    rotate([0, 180, 0]) {
+                        translate([-6,6,0])
+                        heart(10,10);
+                        text("mellypop :3");
+                    }
                 }
-            }
-        }
 
-        difference() {
-            cylinder(height * 2, radius * 2, radius * 2);
-            translate([0, 0, epsilon])
-            cylinder(height * 2 + (epsilon * 2), radius + epsilon, radius + epsilon);
+                translate([0,0,height-floorHeight])
+                scallopCirclet(
+                    radius,
+                    wallWidth
+                );
+            }
         }
     }
 
