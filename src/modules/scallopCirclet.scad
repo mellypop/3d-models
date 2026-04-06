@@ -3,7 +3,9 @@ epsilon = 0.001;
 module scallopCirclet(
     radius = 100,
     width = 10,
-    scallopCount = 32
+    scallopCount = 32,
+    wallSegments = 128,
+    scallopSegments = 64
 ) {
     circumference = (radius) * PI * 2;
     scallopRadius = circumference / scallopCount;
@@ -16,7 +18,7 @@ module scallopCirclet(
                     scallopRadius,
                     radius * 2,
                     radius * 2,
-                    $fn = 256
+                    $fn = wallSegments
                 );
 
                 translate([0, 0, scallopRadius])
@@ -28,7 +30,7 @@ module scallopCirclet(
                             radius * 2,
                             0,
                             (radius * 4 * PI) / (scallopCount * 2),
-                            $fn = 256
+                            $fn = scallopSegments
                         );
                     }
                 }
@@ -43,7 +45,7 @@ module scallopCirclet(
                         radius * 2,
                         0,
                         (radius * 4 * PI) / (scallopCount * 2),
-                        $fn = 256
+                        $fn = scallopSegments
                     );
                 }
             }
@@ -59,14 +61,14 @@ module scallopCirclet(
                 5 * scallopRadius,
                 radius,
                 radius,
-                $fn = 256
+                $fn = wallSegments
             );
             translate([0, 0, -scallopRadius])
             cylinder(
                 7 * scallopRadius,
                 radius - width,
                 radius - width,
-                $fn = 256
+                $fn = wallSegments
             );
         }
     }
