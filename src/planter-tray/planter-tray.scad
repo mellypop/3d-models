@@ -7,16 +7,12 @@ innerDiameter = 120;
 solidInnerWallHeight = 10;
 wallWidth = 2;
 floorHeight = 5;
-//scallopRadius = 7;
 
 diameter = innerDiameter + (wallWidth * 2);
 height = solidInnerWallHeight + floorHeight;
 
 radius = diameter / 2;
 innerRadius = innerDiameter / 2;
-
-scallopRadius = (radius * PI) / 27.85;
-scallopRotationStep = 180 / (scallopRadius * 2);
 
 union() {
     difference() {
