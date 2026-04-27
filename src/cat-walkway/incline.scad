@@ -6,7 +6,7 @@ segmentCount = ceil((inclineLength + inclinePathLength) / (buildPlateMax - build
 
 for(i = [0:segmentCount - 1]) {
     startLength = i * (buildPlateMax - (buildPlateMargin * 2));
-    endLength = startLength + ((buildPlateMax - (buildPlateMargin * 2)) * (i+1));
+    endLength = startLength + ((buildPlateMax - (buildPlateMargin * 2)));
     segmentLength = endLength - startLength;
 
     union() {
