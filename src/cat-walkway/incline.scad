@@ -80,10 +80,6 @@ for(i = [0:segmentCount - 1]) {
 
         if(endLength > inclineLength) { // Incline path
             leftoverOffset = 0;
-            translate([((pathDepth + 50) * i),startLength, 0])
-            cube([pathDepth, 50, 150]);
-            translate([((pathDepth + 50) * i),endLength, 0])
-            cube([pathDepth, 50, 150]);
 
             if(startLength < inclineLength) {
                 leftoverOffset = (inclineLength - startLength) + 100000;
