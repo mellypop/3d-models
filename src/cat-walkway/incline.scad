@@ -9,7 +9,6 @@ difference() {
         buildPlateSize = buildPlateMax - (2 * buildPlateMargin);
         startLength = i * buildPlateSize;
         endLength = startLength + buildPlateSize < inclineLength + inclinePathLength ? startLength + buildPlateSize: inclineLength + inclinePathLength;
-        echo(endLength);
         segmentLength = endLength - startLength;
 
         union() {
