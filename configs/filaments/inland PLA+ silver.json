@@ -1,0 +1,10 @@
+{
+    "filament_settings_id": [
+        "inland PLA+ silver"
+    ],
+    "from": "User",
+    "inherits": "Elegoo PLA+ @ECC",
+    "is_custom_defined": "0",
+    "name": "inland PLA+ silver @ECC - Copy",
+    "version": "2.3.1.10"
+}

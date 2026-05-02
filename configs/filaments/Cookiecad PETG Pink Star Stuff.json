@@ -1,0 +1,13 @@
+{
+    "compatible_printers": [
+        "Elegoo Centauri Carbon 0.4 nozzle"
+    ],
+    "filament_settings_id": [
+        "Cookiecad PETG Pink Star Stuff"
+    ],
+    "from": "User",
+    "inherits": "Bambu PETG Translucent @System",
+    "is_custom_defined": "0",
+    "name": "Cookiecad PETG Pink Star Stuff",
+    "version": "2.3.1.10"
+}
