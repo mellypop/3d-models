@@ -28,99 +28,104 @@ intersection() {
         ])
         cylinder(clampHeight, clampWidth / 2, clampWidth / 2);
         
-        cube([
-            clampWidth,
-            clampDepth - (clampWidth / 2),
-            clampHeight
-        ]);
-    }
-
-union() {
-    difference() {
-        cube([
-            clampWidth,
-            clampDepth,
-            clampHeight
-        ]);
-
         translate([
-            -epsilon,
-            plasticThickness + tolerance - epsilon,
-            barHeight + (plasticThickness * 2) + (tolerance * 2)
-        ])
-        cube([
-            clampWidth + (2 * epsilon),
-            clampDepth + (2 * epsilon),
-            clampGap
-        ]);
-        
-        translate([
-            -epsilon,
-            plasticThickness + tolerance - epsilon,
-            plasticThickness - tolerance
-        ])
-        cube([
-            clampWidth + (2 * epsilon),
-            clampDepth + (2 * epsilon),
-            clampInnerHeight
-        ]);
-        
-        translate([
-            -epsilon,
-            plasticThickness + tolerance - epsilon,
-            (plasticThickness * 3) + (tolerance * 4) + gapHeight - (plasticThickness * 2) + barHeight
-        ])
-        cube([
-            clampWidth + (2 * epsilon),
-            clampDepth + (2 * epsilon),
-            clampInnerHeight
-        ]);
-
-        translate([
-            clampWidth / 2,
-            barWidth + screwHeadDiameter + plasticThickness,
-            plasticThickness / 2
-        ])
-        screw_hole(str(
-            "M",screwSize,"x",threadPitch),
-           thread=true,
-           l=screwLength
-       );
-
-        translate([
-            clampWidth / 2,
-            barWidth + screwHeadDiameter + plasticThickness,
-            (plasticThickness * 2.5) + gapHeight + (tolerance * 4)
-        ])
-        screw_hole(str(
-            "M",screwSize,"x",threadPitch),
-           thread=true,
-           l=screwLength
-       );
-    }
-    
-    translate([
-        -clampWidth / 4,
-        -boardThickness - plasticThickness - tolerance, 
+            0,
+            -boardThickness - tolerance - plasticThickness - epsilon,
         0
-    ]) {
+        ])
+        cube([
+            clampWidth,
+            clampDepth - (clampWidth / 2) + boardThickness + tolerance + plasticThickness,
+            clampHeight
+        ]);
+    }
+
+    union() {
         difference() {
             cube([
-                clampWidth * 1.5,
-                boardThickness + plasticThickness + tolerance,
-                gapHeight / 3
+                clampWidth,
+                clampDepth,
+                clampHeight
             ]);
+
             translate([
                 -epsilon,
-                plasticThickness,
-                plasticThickness
+                plasticThickness + tolerance - epsilon,
+                barHeight + (plasticThickness * 2) + (tolerance * 2)
             ])
             cube([
-                clampWidth * 2,
-                boardThickness + tolerance,
-                gapHeight
+                clampWidth + (2 * epsilon),
+                clampDepth + (2 * epsilon),
+                clampGap
             ]);
+            
+            translate([
+                -epsilon,
+                plasticThickness + tolerance - epsilon,
+                plasticThickness - tolerance
+            ])
+            cube([
+                clampWidth + (2 * epsilon),
+                clampDepth + (2 * epsilon),
+                clampInnerHeight
+            ]);
+            
+            translate([
+                -epsilon,
+                plasticThickness + tolerance - epsilon,
+                (plasticThickness * 3) + (tolerance * 4) + gapHeight - (plasticThickness * 2) + barHeight
+            ])
+            cube([
+                clampWidth + (2 * epsilon),
+                clampDepth + (2 * epsilon),
+                clampInnerHeight
+            ]);
+
+            translate([
+                clampWidth / 2,
+                barWidth + screwHeadDiameter + plasticThickness,
+                plasticThickness / 2
+            ])
+            screw_hole(str(
+                "M",screwSize,"x",threadPitch),
+               thread=true,
+               l=screwLength
+           );
+
+            translate([
+                clampWidth / 2,
+                barWidth + screwHeadDiameter + plasticThickness,
+                (plasticThickness * 2.5) + gapHeight + (tolerance * 4)
+            ])
+            screw_hole(str(
+                "M",screwSize,"x",threadPitch),
+               thread=true,
+               l=screwLength
+           );
+        }
+        
+        translate([
+            -clampWidth / 4,
+            -boardThickness - plasticThickness - tolerance, 
+            0
+        ]) {
+            difference() {
+                cube([
+                    clampWidth * 1.5,
+                    boardThickness + plasticThickness + tolerance,
+                    gapHeight / 3
+                ]);
+                translate([
+                    -epsilon,
+                    plasticThickness,
+                    plasticThickness
+                ])
+                cube([
+                    clampWidth * 2,
+                    boardThickness + tolerance,
+                    gapHeight
+                ]);
+            }
         }
     }
-}
 }
