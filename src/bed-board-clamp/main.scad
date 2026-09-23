@@ -26,7 +26,7 @@ intersection() {
             clampDepth - (clampWidth / 2),
             0
         ])
-        cylinder(clampHeight, clampWidth / 2, clampWidth / 2);
+        cylinder(clampHeight, clampWidth / 2, clampWidth / 2, $fn = 256);
         
         translate([
             0,
