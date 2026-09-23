@@ -83,7 +83,7 @@ intersection() {
 
             translate([
                 clampWidth / 2,
-                barWidth + screwHeadDiameter + plasticThickness,
+                clampDepth - (clampWidth / 2),
                 plasticThickness / 2
             ])
             screw_hole(str(
@@ -94,7 +94,7 @@ intersection() {
 
             translate([
                 clampWidth / 2,
-                barWidth + screwHeadDiameter + plasticThickness,
+                clampDepth - (clampWidth / 2),
                 (plasticThickness * 2.5) + gapHeight + (tolerance * 4)
             ])
             screw_hole(str(
